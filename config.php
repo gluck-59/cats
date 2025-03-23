@@ -1,5 +1,5 @@
 <?php
-
+ini_set('display_errors', 'off');
 class Config {
     private const DBHOST = 'localhost';
     private const DBNAME = 'fetch_crud_app';
