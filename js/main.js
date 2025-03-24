@@ -154,8 +154,12 @@ const fetchParents = async (id) => {
 };
 
 
+
 $(document).ready(function () {
     $('.modal').on('shown.bs.modal', function (event) {
         fetchParents($(event.target).find('form#edit-user-form>#id').val() ?? 0);
     })
+
+    $('input[type=date]').attr('max', new Date().toJSON().slice(0, 10));
 })
+

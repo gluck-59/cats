@@ -5,7 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Мявк!</title>
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
+<!--        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.24.1/dist/bootstrap-table.min.css">-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<!--        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">-->
+
+
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
         <link rel="stylesheet" href="css/main.css">
@@ -173,13 +177,13 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="table-responsive">
-                        <table class="table table-bordered text-center">
+                        <table data-toggle="table" data-search="true" class="table table-bordered text-center">
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Кличка</th>
-                                <th>Возраст, лет</th>
-                                <th>Пол</th>
+                                <th data-sortable="true" data-field="fmane">Кличка</th>
+                                <th data-sortable="true" data-field="age">Возраст, лет</th>
+                                <th data-sortable="true" data-field="gender">Пол</th>
                                 <th>Отец</th>
                                 <th>Мать</th>
                                 <th>Действия</th>
@@ -187,13 +191,20 @@
                             </thead>
                             <tbody></tbody>
                         </table>
+
                     </div>
                 </div>
             </div>
         </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!--        <script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.24.1/dist/bootstrap-table.min.js"></script>-->
+
+
+
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script src="js/main.js"></script>
     </body>
