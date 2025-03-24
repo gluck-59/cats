@@ -13,7 +13,7 @@ if (isset($_POST['add'])) {
     $fname = $util->sanitize($_POST['fname']);
     $birthDate = $_POST['birthDate'];
     $gender = $_POST['gender'];
-    $father = $_POST['father'];
+    $father = $_POST['father'] ?? [];
     $mother = $_POST['mother'];
 
     if ($db->insert($fname, $birthDate, $gender, $father, $mother)) {
@@ -28,7 +28,7 @@ if (isset($_POST['add'])) {
 // method rest — get
 // в реальном проекте я предпочитаю отдавать в клиента JSON, а HTML здесь для демонстрации "а что так можно было"
 if (isset($_GET['read'])) {
-    $users = $db->read();
+    $users = $db->read($_GET['sorting'], $_GET['dir']);
     $output = '';
     $mothers = [];
     if ($users) {
@@ -40,12 +40,11 @@ if (isset($_GET['read'])) {
                 }
             }
             $output .= '<tr>
-                <td>' . $row['id'] . '</td>
                 <td>' . $row['first_name'] . '</td>
                 <td>' . $row['age'] . '</td>
                 <td>' . ($row['gender'] == 1 ? 'кот' : 'кошка') . '</td>
-                <td>' . (!empty($fathers) ? implode(', ',$fathers): 'неизвестно') . '</td>
-                <td>' . ($row['mother'] > 0 ? $db->readOne($row['mother'])['first_name'] : 'неизвестно') . '</td>
+                <td>' . (!empty($fathers) ? implode(', ',$fathers): '-') . '</td>
+                <td>' . ($row['mother'] > 0 ? $db->readOne($row['mother'])['first_name'] : '-') . '</td>
                 <td>
                 <a href="#" id="' . $row['id'] . '" class="btn btn-success btn-md py-0 editLink" data-bs-toggle="modal" data-bs-target="#editUserModal">Ред.</a>
                 <a href="#" id="' . $row['id'] . '" class="btn btn-danger btn-md py-0 deleteLink">Удалить</a>
@@ -76,7 +75,7 @@ if (isset($_POST['update'])) {
     $fname = $util->sanitize($_POST['fname']);
     $birthDate = $_POST['birthDate'];
     $gender = $_POST['gender'];
-    $father = $_POST['father'];
+    $father = $_POST['father'] ?? [];
     $mother = $_POST['mother'];
 
 
@@ -108,7 +107,7 @@ if (isset($_GET['fetchParents'])) {
 
     $users = $db->fetchParents($exclude);
     $selected = $db->readOne($exclude);
-    $mothers = [['id' => 0, 'first_name' => 'неизвестно']]; // проще сделать эту заглушку здесь чем воевать с select2.js
+    $mothers = [['id' => 0, 'first_name' => '-']]; // проще сделать эту заглушку здесь чем воевать с select2.js
     $fathers = [];
     foreach ($users as $user) {
         switch ($user['gender']) {

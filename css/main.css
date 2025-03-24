@@ -47,6 +47,12 @@ table {
     border-color: var(--okay-border-color)!important;
 }
 
-.alert-info {
-    background-color: var(--okay-alert-info);
+
+th { cursor: pointer}
+
+.fa {
+    /*color: lightgray;*/
+    opacity: 0;
 }
+
+.sorted > .fa { opacity: 0.6}

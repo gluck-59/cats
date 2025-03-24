@@ -33,8 +33,9 @@ class Database extends Config {
      * @return array
      */
 
-    public function read() {
-        $sql = 'SELECT *, TIMESTAMPDIFF(YEAR, birthDate, NOW()) age FROM users ';
+    public function read($order = false, $dir = 'asc') {
+        $sql = 'SELECT *, TIMESTAMPDIFF(YEAR, birthDate, NOW()) age, JSON_LENGTH(father) qty FROM users ';
+        if ($order) $sql .= 'ORDER BY '.$order .' '.$dir;
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();
