@@ -186,7 +186,7 @@ $(document).ready(function () {
     })
 
     // запретим установку будущей даты в модалах
-    $('input[type=date]').attr('max', new Date().toJSON().slice(0, 10));
+    $('input[type=date]').attr('max', new Date().toJSON().slice(0, 10))+' 23:59:59';
 
 
     // сортировка
